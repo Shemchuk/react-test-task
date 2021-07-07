@@ -1,8 +1,8 @@
 import './posts.scss';
 
+import IPost from '../../../models/post';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import IPost from '../../../models/post';
 
 const Posts: React.FC<any> = (props: any) => {
   const { posts } = props;

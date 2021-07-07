@@ -7,7 +7,6 @@ import IState from '../../store/state';
 
 const LogoutButton: React.FC<any> = (props: any) => {
   const { setIsLoggedAdmin } = props;
-
   const clickHandle = () => {
     setIsLoggedAdmin(false);
   }
@@ -27,4 +26,3 @@ const mapStateToProps = (state: IState) => ({
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LogoutButton);
 
-// export default LogoutButton;

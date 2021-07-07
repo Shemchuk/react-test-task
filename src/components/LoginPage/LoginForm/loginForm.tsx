@@ -14,24 +14,18 @@ const LoginForm: React.FC<any> = (props: any) => {
   const { isLoggedAdmin, setIsLoggedAdmin } = props;
   
   const clickLoginButton = (event: any) => {
-    console.log(`Login: ${login} Password: ${password}`);
-    // TODO: change to Admin / 12345
-    if (login === '1' && password === '1') {
+    if (login === 'Admin' && password === '12345') {
       setIsLoggedAdmin(true);
       setLoginMessage('');
-      console.log('Admin logged in!');
     } else {
       setIsLoggedAdmin(false);
       setLoginMessage('Username or password incorrect');
-      console.log(loginMessage);
     }
 
     event.preventDefault();
-    // return false;
   }
 
   if (isLoggedAdmin) {
-    console.log('Redirecting to list from login page...');
     return (
       <Redirect to='/list' />
     );
@@ -46,7 +40,6 @@ const LoginForm: React.FC<any> = (props: any) => {
         <LoginErrorMessage loginMessage={loginMessage} /> 
         <input type="submit" id="login-button" className="login-button" value="Login"  />
       </form>
-
     </div>
   );
 }

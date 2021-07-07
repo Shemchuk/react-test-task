@@ -1,15 +1,11 @@
 import './header.scss';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-// import Search from './search';
 import IState from '../../store/state';
 import LogoutButton from '../LogoutButton/logoutButton';
+import React from 'react';
+import { connect } from 'react-redux';
 
 const Header: React.FC<any> = (props: any) => {
-
   const { isLoggedAdmin } = props;
 
   return (
@@ -17,9 +13,7 @@ const Header: React.FC<any> = (props: any) => {
       <div className="header_wrapper">
         <div className="header_logo">
         </div>
-
         <div className="header_menu">
-
           {isLoggedAdmin ? <LogoutButton /> : null}
         </div>
       </div>

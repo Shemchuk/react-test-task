@@ -1,19 +1,26 @@
 import './post.scss';
 
+import IState from '../../store/state';
+import IPost from '../../models/post';
 import React from 'react';
 import { connect } from 'react-redux';
-import IState from '../../store/state';
-import { withRouter } from 'react-router-dom';
-import IPost from '../../models/post';
+import { Redirect, withRouter } from 'react-router-dom';
 
 const Post: React.FC<any> = (props: any) => {
   const { 
+    isLoggedAdmin, 
     posts,     
     match: {
       params: { id },
     }, 
   } = props;
   
+  if (!isLoggedAdmin) {
+    return (
+      <Redirect to='/login' />
+    );
+  }
+
   const post = posts.find((item: IPost) => item.id == id);
   
   return (
@@ -28,6 +35,7 @@ const Post: React.FC<any> = (props: any) => {
 
 const mapStateToProps = (state: IState) => ({
   posts: state.posts,
+  isLoggedAdmin: state.isLoggedAdmin,
 });
 
 export default withRouter(connect(mapStateToProps)(Post));

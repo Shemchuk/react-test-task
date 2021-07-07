@@ -1,7 +1,3 @@
-// TODO: configure husky
-// TODO: clean comments
-// TODO: config prettier
-
 import './assets/scss/main.scss';
 
 import * as React from 'react';

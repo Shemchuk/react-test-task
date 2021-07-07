@@ -1,0 +1,15 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "object-curly-newline": "off",
+    "jsx-a11y/alt-text": "off"
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": ["airbnb-typescript", "airbnb/hooks", "prettier"]
+}

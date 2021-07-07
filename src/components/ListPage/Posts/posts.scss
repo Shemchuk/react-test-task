@@ -1,0 +1,10 @@
+.posts-list {
+  list-style-type: none;
+  .posts-list__item {
+    margin: 5px;
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+}

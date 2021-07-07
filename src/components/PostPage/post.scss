@@ -1,0 +1,12 @@
+.post-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  min-width: 300px;
+  max-width: 800px;
+  width: 100%;
+
+  .post-info {
+    margin: 10px 0px;
+  }
+}

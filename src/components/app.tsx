@@ -4,6 +4,7 @@ import Header from './Header/header';
 import Footer from './Footer/footer';
 import LoginPage from './LoginPage/loginPage';
 import ListPage from './ListPage/listPage';
+import Post from './PostPage/post';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -14,13 +15,13 @@ const App: React.FC<any> = (props: any) => {
       <Header />
         <Router>
           <Switch>
-            <Route path={`/post/:id`}>
+            <Route path='/post/:id'>
+              <Post />
+            </Route>
+            <Route path={'/login'}>
               <LoginPage />
             </Route>
-            <Route path={`/login`}>
-              <LoginPage />
-            </Route>
-            <Route path={`/list`}>
+            <Route path={'/list'}>
               <ListPage />
             </Route>
             <Redirect to='/login' />

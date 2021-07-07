@@ -3,17 +3,13 @@ import './posts.scss';
 import React from 'react';
 
 const Posts: React.FC<any> = (props: any) => {
-  const {posts, IsLoadingData} = props;
-  
-  if (IsLoadingData) {
-    return <h2>Loading data...</h2>
-  }
+  const { posts } = props;
 
   return (
     <ul className='posts-list'>
       { posts.map( (post: any) => (
         <li key={post.id} className='posts-list__item'>
-          {post.title}
+          {post.id}. {post.title}
         </li>
       ))}
     </ul>

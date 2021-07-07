@@ -1,8 +1,9 @@
 import IState from './state';
-import { ActionTypes, SET_CURRENT_COUNTRY, SET_CURRENT_LANG, LOAD_COUNTRIES, SET_CURRENT_FILTER, SET_IS_MAIN_PAGE, SET_IS_LOGGED_ADMIN } from './actions';
+import { ActionTypes, SET_CURRENT_COUNTRY, SET_CURRENT_LANG, LOAD_COUNTRIES, SET_CURRENT_FILTER, SET_IS_MAIN_PAGE, SET_IS_LOGGED_ADMIN, LOAD_POSTS } from './actions';
 
 const initialState: IState = {
   isLoggedAdmin: false,
+  posts: [],
 
   // !OLD DATA BELOW - ERASE
   countryList: [],
@@ -31,6 +32,8 @@ export default function reducer(state = initialState, action: ActionTypes): ISta
     // TODO: new initial state
     case SET_IS_LOGGED_ADMIN:
       return { ...state, isLoggedAdmin: action.payload };
+    case LOAD_POSTS:
+      return { ...state, posts: action.payload };
 
     default:
       return state;

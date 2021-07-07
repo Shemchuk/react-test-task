@@ -1,6 +1,9 @@
+import IPost from '../models/post';
 import IState from './state';
+
 import ICountry from '../models/country';
 import TLang from '../models/lang';
+import axios from 'axios';
 
 export const SET_CURRENT_COUNTRY = 'SET_CURRENT_COUNTRY';
 export const SET_CURRENT_LANG = 'SET_CURRENT_LANG';
@@ -8,6 +11,15 @@ export const LOAD_COUNTRIES = 'LOAD_COUNTRIES';
 export const SET_CURRENT_FILTER = 'SET_CURRENT_FILTER';
 export const SET_IS_MAIN_PAGE = 'SET_IS_MAIN_PAGE';
 export const SET_IS_LOGGED_ADMIN = 'SET_IS_LOGGED_ADMIN';
+export const LOAD_POSTS = 'LOAD_POSTS';
+
+// Actions
+export function loadPostsAction(posts: IPost[]): ILoadPosts {
+  return {
+    type: LOAD_POSTS,
+    payload: posts,
+  };
+}
 
 export function setCurrentCountry(country?: ICountry | undefined): ISetCurrentCountry {
   return {
@@ -16,7 +28,6 @@ export function setCurrentCountry(country?: ICountry | undefined): ISetCurrentCo
   };
 }
 
-// Actions
 export function loadCountriesAction(countries: ICountry[]): ILoadCountries {
   return {
     type: LOAD_COUNTRIES,
@@ -46,10 +57,18 @@ export function setIsMainPageAction(isMainPage: boolean = true): ISetIsMainPage 
 }
 
 export function setIsLoggedAdminAction(isLoggedAdmin: boolean = false): ISetIsLoggedAdmin {
+
+  window.localStorage.setItem('test__isLoggedAdmin', JSON.stringify(isLoggedAdmin));
+
   return {
     type: SET_IS_LOGGED_ADMIN,
     payload: isLoggedAdmin,
   };
+}
+
+interface ILoadPosts {
+  type: typeof LOAD_POSTS;
+  payload: IPost[];
 }
 
 interface ISetCurrentCountry {
@@ -82,7 +101,7 @@ interface ISetIsLoggedAdmin {
   payload: boolean;
 }
 
-export type ActionTypes = ISetCurrentCountry | ISetCurrentLang | ILoadCountries | ISetFilterCountry | ISetIsMainPage | ISetIsLoggedAdmin;
+export type ActionTypes = ISetCurrentCountry | ISetCurrentLang | ILoadCountries | ISetFilterCountry | ISetIsMainPage | ISetIsLoggedAdmin | ILoadPosts;
 
 export const appActions = {
   // Action (thunk) - load country by ID and Lang
@@ -108,7 +127,21 @@ export const appActions = {
         dispatch(loadCountriesAction(countries));
       });
   },
-  // Action - set language
+  // Action (thunk) - load all posts from public api into store
+  loadPosts: () => (dispatch: (action: any) => void, getState: () => IState) => {
+
+    const fetchPosts = async () => {
+      const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      const posts = res.data;
+      console.log('Action loadPosts()');
+      console.log(posts);
+      dispatch(loadPostsAction(posts));
+
+      //setPosts(res.data);
+    }
+    console.log('trying to load data with action loadPosts');
+    fetchPosts();
+  },
   setLang: setCurrentLang,
   setFilter: setFilterCountryAction,
   setIsMainPage: setIsMainPageAction,

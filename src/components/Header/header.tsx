@@ -9,8 +9,7 @@ import IState from '../../store/state';
 import LogoutButton from '../LogoutButton/logoutButton';
 
 const Header: React.FC<any> = (props: any) => {
-  const { lang } = props;
-  const { isMainPage } = props;
+
   const { isLoggedAdmin } = props;
 
   return (
@@ -22,7 +21,6 @@ const Header: React.FC<any> = (props: any) => {
         <div className="header_menu">
 
           {isLoggedAdmin ? <LogoutButton /> : null}
-          {/* <LogoutButton /> */}
         </div>
       </div>
     </header>
@@ -30,8 +28,6 @@ const Header: React.FC<any> = (props: any) => {
 };
 
 const mapStateToProps = (state: IState) => ({
-  lang: state.language,
-  isMainPage: state.isMainPage,
   isLoggedAdmin: state.isLoggedAdmin,
 });
 

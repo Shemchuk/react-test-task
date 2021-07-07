@@ -5,7 +5,7 @@ import LoginErrorMessage from './LoginErrorMessage/loginErrorMessage';
 import { connect } from 'react-redux';
 import IState from '../../../store/state';
 import { appActions } from '../../../store/actions';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 
 const LoginForm: React.FC<any> = (props: any) => {
   const [login, setLogin] = useState('');
@@ -21,6 +21,7 @@ const LoginForm: React.FC<any> = (props: any) => {
       setLoginMessage('');
       console.log('Admin logged in!');
     } else {
+      setIsLoggedAdmin(false);
       setLoginMessage('Username or password incorrect');
       console.log(loginMessage);
     }

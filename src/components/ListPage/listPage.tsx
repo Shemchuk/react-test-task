@@ -1,31 +1,39 @@
 import './listPage.scss';
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import Posts from './Posts/posts';
+import IState from '../../store/state';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { appActions } from '../../store/actions';
 
 const ListPage: React.FC<any> = (props: any) => {
-  const [posts, setPosts] = useState([]);
-  const [isLoadingData, setIsLoadingData] = useState(false);
+  const { posts, loadPosts, isLoggedAdmin } = props;
   
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setIsLoadingData(true);
-      const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-      setPosts(res.data);
-      setIsLoadingData(false);
-    }
+  if (!isLoggedAdmin) {
+    console.log('Redirecting to login page from list page...');
+    return (
+      <Redirect to='/login' />
+    );
+  }
 
-    fetchPosts();
-  }, []);
+    useEffect(() => {
+      loadPosts();
+    }, [loadPosts]);
 
-  console.log(posts);
+  console.log(`isLoggedAdmin: ${isLoggedAdmin}`);
   return (
     <div className='list-page'>
       <h2>List page</h2>
-      <Posts posts={posts} isLoadingData={isLoadingData} />
+      <Posts posts={posts} />
     </div>
   );
 }
 
-export default ListPage;
+const mapDispatchToProps = appActions;
+const mapStateToProps = (state: IState) => ({
+  isLoggedAdmin: state.isLoggedAdmin,
+  posts: state.posts,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListPage);

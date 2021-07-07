@@ -1,0 +1,47 @@
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #333333;
+  color: #8d8d8d;
+  display: flex;
+  align-self: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  box-shadow: 6px 3px 6px 6px rgba(0, 0, 0, 0.2);
+
+  .footer_wrapper {
+    margin: 0 auto;
+    width: 98%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .footer_git_link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        color: #8d8d8d;
+        transition: all 0.3s;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+
+      .footer_social {
+        width: 25px;
+        height: 25px;
+        background-image: url('../../assets/images/github.png');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        // @media (max-width: 600px) {
+        //   display: none;
+        // }
+      }
+    }
+  }
+}

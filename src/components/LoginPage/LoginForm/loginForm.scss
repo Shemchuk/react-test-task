@@ -1,0 +1,31 @@
+.login-form__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 300px;
+  width: 100%;
+  font-family: 'Bebas Neue', sans-serif;
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 30px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+
+    .login-button {
+      margin-top: 15px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    * {
+      margin-bottom: 5px;
+    }
+  }
+}

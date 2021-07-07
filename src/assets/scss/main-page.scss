@@ -1,0 +1,38 @@
+@mixin max-width($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+.countries-wrapper {
+  margin: 15px auto;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+@include max-width(2100px) {
+  .countries-wrapper {
+    width: 1200px;
+  }
+}
+
+@include max-width(1300px) {
+  .countries-wrapper {
+    width: 900px;
+  }
+}
+
+@include max-width(950px) {
+  .countries-wrapper {
+    width: 600px;
+  }
+}
+
+@include max-width(680px) {
+  .countries-wrapper {
+    width: 300px;
+  }
+}
+
